@@ -15,25 +15,25 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  **/
 public class CodeGenerator {
     public static void main(String[] args) {
-// 代码生成器
+        // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
-// 全局配置
+        // 全局配置
         GlobalConfig gc = new GlobalConfig();
-//获取当前路径
+        //获取当前路径
         String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
-//设置生成代码位置
+        //设置生成代码位置
         gc.setOutputDir(projectPath + "/commons/src/main/java");
-//设置代码文件头作者
+        //设置代码文件头作者
         gc.setAuthor("LiuDongBin");
-//设置是否在资源管理器打开
+        //设置是否在资源管理器打开
         gc.setOpen(true);
-//设置生成代码是否覆盖
+        //设置生成代码是否覆盖
         gc.setFileOverride(true);
-//设置去除生成代码接口中的I
+        //设置去除生成代码接口中的I
         gc.setServiceName("%sService");
         mpg.setGlobalConfig(gc);
-// 数据源配置
+        // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/fmmall?serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
