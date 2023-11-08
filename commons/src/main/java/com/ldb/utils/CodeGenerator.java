@@ -40,9 +40,9 @@ public class CodeGenerator {
         dsc.setUsername("root");
         dsc.setPassword("dobi0108");
         mpg.setDataSource(dsc);
-// 包配置
+        // 包配置
         PackageConfig pc = new PackageConfig();
-//设置模块名称
+        //设置模块名称
 //pc.setModuleName("shopping");
         pc.setParent("com.ldb");
         pc.setEntity("pojo");
