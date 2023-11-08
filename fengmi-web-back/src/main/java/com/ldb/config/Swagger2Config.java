@@ -24,7 +24,8 @@ public class Swagger2Config {
     public Docket getDocket(){
         //创建Docket对象
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(getApiInfo())//指定API接口文件首页信息
+                .apiInfo(getApiInfo())
+                .groupName("LDB")//指定API接口文件首页信息
                 .select()//初始化并返回一个API选择构造器
                 .apis(RequestHandlerSelectors.basePackage("com.ldb.controller"))//为任何接口生成API文档
                 .paths(PathSelectors.any())//可以根据url路径设置哪些请求加入文档，忽略哪些请求
