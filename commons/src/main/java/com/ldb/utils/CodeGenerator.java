@@ -43,14 +43,14 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //设置模块名称
-//pc.setModuleName("shopping");
+        //pc.setModuleName("shopping");
         pc.setParent("com.ldb");
         pc.setEntity("pojo");
         pc.setMapper("mapper");
         pc.setService("service");
         pc.setController("controller");
         mpg.setPackageInfo(pc);
-// 策略配置
+        // 策略配置
         StrategyConfig strategy = new StrategyConfig();
 //表名 下划线转驼峰
         strategy.setNaming(NamingStrategy.underline_to_camel);
