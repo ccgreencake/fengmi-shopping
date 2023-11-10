@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ldb.mapper.CategoryMapper">
+<resultMap id="CategoryMap" type="Category">
+       <id column="categoryId" property="categoryId1"/>
+       <result column="categoryName" property="category_name1"/>
+       <result column="categoryLevel" property="category_level1"/>
+       <result column="categoryIcon" property="category_icon1"/>
+       <result column="categorySlogan" property="category_slogan1"/>
+       <result column="categoryPic" property="category_pic1"/>
+       <result column="categoryBgColor" property="category_bg_color1"/>
+       <collection property="categoryList" ofType="Category">
+              <id column="categoryId" property="category_id2"/>
+                <result column="categoryName" property="category_name2"/>
+                <result column="categoryLevel" property="category_level2"/>
+                <result column="parentId" property="parent_id2"/>
+                <result column="categoryIcon" property="category_icon2"/>
+                <result column="categorySlogan" property="category_slogan2"/>
+                <result column="categoryPic" property="category_pic2"/>
+                <result column="categoryBgColor" property="category_bg_color2"/>
+              <collection property="categoryList" ofType="Category">
+                     <id column="categoryId" property="category_id3"/>
+                        <result column="categoryName" property="category_name3"/>
+                        <result column="categoryLevel" property="category_level3"/>
+                        <result column="parentId" property="parent_id3"/>
+                        <result column="categoryIcon" property="category_icon3"/>
+                        <result column="categorySlogan" property="category_slogan3"/>
+                        <result column="categoryPic" property="category_pic3"/>
+                        <result column="categoryBgColor" property="category_bg_color3"/>
+              </collection>
+       </collection>
+
+</resultMap>
+<select id="selectAllCategory" resultMap="CategoryMap">
+    select c1.category_id category_id1,
+           c1.category_name category_name1,
+           c1.category_level category_level1,
+           c1.category_icon category_icon1,
+           c1.category_slogan category_slogan1,
+           c1.category_pic category_pic1,
+           c1.category_bg_color category_bg_color1,
+
+           c2.category_id category_id2,
+           c2.category_name category_name2,
+           c2.category_level category_level2,
+           c2.parent_id parent_id2,
+           c2.category_icon category_icon2,
+           c2.category_slogan category_slogan2,
+           c2.category_pic category_pic2,
+           c2.category_bg_color category_bg_color2,
+
+           c3.category_id category_id3,
+           c3.category_name category_name3,
+           c3.category_level category_level3,
+           c3.parent_id parent_id3,
+           c3.category_icon category_icon3,
+           c3.category_slogan category_slogan3,
+           c3.category_pic category_pic3,
+           c3.category_bg_color category_bg_color3
+
+    from category c1
+             left JOIN category c2 on c1.category_id = c2.parent_id
+             left JOIN category c3 on c2.category_id = c3.parent_id
+    where c1.category_level = 1
+</select>
+</mapper>
