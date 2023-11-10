@@ -24,4 +24,5 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #懒加载
     lazy-loading-enabled: true
-  
+
+

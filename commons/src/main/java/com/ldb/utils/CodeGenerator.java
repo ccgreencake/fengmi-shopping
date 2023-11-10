@@ -27,7 +27,7 @@ public class CodeGenerator {
         //设置代码文件头作者
         gc.setAuthor("LiuDongBin");
         //设置是否在资源管理器打开
-        gc.setOpen(true);
+        gc.setOpen(false);
         //设置生成代码是否覆盖
         gc.setFileOverride(true);
         //设置去除生成代码接口中的I
@@ -65,7 +65,7 @@ public class CodeGenerator {
 //设置乐观锁注解(数据库中需要有version字段)
 //        strategy.setVersionFieldName("version");
 //设置生成的表名
-        strategy.setInclude("product");
+        strategy.setInclude("category");
         mpg.setStrategy(strategy);
         mpg.execute();
     }
