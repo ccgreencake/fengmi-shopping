@@ -2,6 +2,7 @@ package com.ldb.service;
 
 import com.ldb.pojo.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ldb.pojo.ResultData;
 
 /**
  * <p>
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-11-09
  */
 public interface CategoryService extends IService<Category> {
-
+    ResultData selectAll();
 }
