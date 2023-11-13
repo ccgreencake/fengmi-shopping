@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 商品 商品信息相关表：分类表，商品图片表，商品规格表，商品参数表 服务实现类
@@ -30,6 +32,19 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             return new ResultData(500,"没有数据");
         }else {
             return new ResultData(200,"查询成功",page);
+        }
+    }
+
+    @Override
+    public ResultData introduce(Integer num) {
+        if (num == null) {
+            num = 10;
+        }
+        List<Product> products = productMapper.selectIntroduct(num);
+        if (products.size() == 0) {
+            return new ResultData(500, "没有数据");
+        } else {
+            return new ResultData(200, "查询成功", products);
         }
     }
 }
