@@ -25,7 +25,6 @@ public class CategoryController {
 
     @GetMapping
     public ResultData selectAll(){
-        System.out.println(categoryService.selectAll());
         return categoryService.selectAll();
     }
 }
