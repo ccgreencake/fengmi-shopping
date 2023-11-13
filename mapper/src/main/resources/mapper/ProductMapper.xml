@@ -5,6 +5,7 @@
         <id property="productId" column="product_id"></id>
         <result property="productName" column="product_name"></result>
         <result property="soldNum" column="sold_num"></result>
+        <result property="updateTime" column="update_time"></result>
         <collection property="productImgList" ofType="ProductImg">
             <id property="id" column="id"></id>
             <result property="url" column="url"></result>
@@ -17,7 +18,8 @@
            sold_num,
            url,
            id,
-           is_main
+           is_main,
+           update_time
     from product
         LEFT JOIN product_img
             on product.product_id = product_img.item_id
