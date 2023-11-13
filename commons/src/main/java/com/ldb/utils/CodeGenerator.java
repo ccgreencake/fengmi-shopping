@@ -27,7 +27,7 @@ public class CodeGenerator {
         //设置代码文件头作者
         gc.setAuthor("LiuDongBin");
         //设置是否在资源管理器打开
-        gc.setOpen(true);
+        gc.setOpen(false);
         //设置生成代码是否覆盖
         gc.setFileOverride(true);
         //设置去除生成代码接口中的I
@@ -43,14 +43,14 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //设置模块名称
-//pc.setModuleName("shopping");
+        //pc.setModuleName("shopping");
         pc.setParent("com.ldb");
         pc.setEntity("pojo");
         pc.setMapper("mapper");
         pc.setService("service");
         pc.setController("controller");
         mpg.setPackageInfo(pc);
-// 策略配置
+        // 策略配置
         StrategyConfig strategy = new StrategyConfig();
 //表名 下划线转驼峰
         strategy.setNaming(NamingStrategy.underline_to_camel);
@@ -65,7 +65,7 @@ public class CodeGenerator {
 //设置乐观锁注解(数据库中需要有version字段)
 //        strategy.setVersionFieldName("version");
 //设置生成的表名
-        strategy.setInclude("product");
+        strategy.setInclude("product_img");
         mpg.setStrategy(strategy);
         mpg.execute();
     }

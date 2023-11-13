@@ -48,6 +48,16 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.31</version>
+        </dependency>
         <!-- swagger依赖 -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -60,7 +70,7 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-<!--        SpringBoot热部署-->
+        <!--        SpringBoot热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

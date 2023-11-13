@@ -25,5 +25,4 @@ mybatis-plus:
     #懒加载
     lazy-loading-enabled: true
 
-server:
-  port: 8081
+

@@ -3,6 +3,7 @@ package com.ldb.pojo;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -21,6 +22,11 @@ import lombok.EqualsAndHashCode;
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 商品图片列表
+     */
+    List<ProductImg> productImgList;
 
     /**
      * 商品主键id
