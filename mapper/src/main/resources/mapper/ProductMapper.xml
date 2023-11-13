@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ldb.mapper.ProductMapper">
-<select id="selectIntroduct" resultType="Product">
+    <resultMap id="ProductMap" type="Product">
+        <id property="productId" column="product_id"></id>
+        <result property="productName" column="product_name"></result>
+        <result property="soldNum" column="sold_num"></result>
+        <collection property="productImgList" ofType="ProductImg">
+            <id property="id" column="id"></id>
+            <result property="url" column="url"></result>
+            <result property="isMain" column="is_main"></result>
+        </collection>
+    </resultMap>
+<select id="selectIntroduct" resultMap="ProductMap">
     select product_id,
            product_name,
-           sold_num
+           sold_num,
+           url,
+           id,
+           is_main
     from product
-    order by sold_num desc
-    limit #{num}
+        LEFT JOIN product_img
+            on product.product_id = product_img.item_id
+    where is_main = 1
+    ORDER BY sold_num DESC
+        LIMIT #{num}
 </select>
 </mapper>

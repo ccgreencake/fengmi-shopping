@@ -27,6 +27,6 @@ public class MapperTest {
     }
     @Test
     public void productTest(){
-        System.out.println(productMapper.selectIntroduct(5));
+        System.out.println(productMapper.selectIntroduct(10));
     }
 }
