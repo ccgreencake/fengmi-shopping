@@ -14,19 +14,11 @@
             <result property="categoryName" column="category_name2"></result>
             <result property="categoryLevel" column="category_level2"></result>
             <result property="parentId" column="parent_id2"></result>
-            <result property="categoryIcon" column="category_icon2"></result>
-            <result property="categorySlogan" column="category_slogan2"></result>
-            <result property="categoryPic" column="category_pic2"></result>
-            <result property="categoryBgColor" column="category_bg_color2"></result>
             <collection property="categoryList" ofType="com.ldb.pojo.Category">
                 <id property="categoryId" column="category_id3"></id>
                 <result property="categoryName" column="category_name3"></result>
                 <result property="categoryLevel" column="category_level3"></result>
                 <result property="parentId" column="parent_id3"></result>
-                <result property="categoryIcon" column="category_icon3"></result>
-                <result property="categorySlogan" column="category_slogan3"></result>
-                <result property="categoryPic" column="category_pic3"></result>
-                <result property="categoryBgColor" column="category_bg_color3"></result>
             </collection>
         </collection>
 
@@ -44,19 +36,11 @@
            c2.category_name category_name2,
            c2.category_level category_level2,
            c2.parent_id parent_id2,
-           c2.category_icon category_icon2,
-           c2.category_slogan category_slogan2,
-           c2.category_pic category_pic2,
-           c2.category_bg_color category_bg_color2,
 
            c3.category_id category_id3,
            c3.category_name category_name3,
            c3.category_level category_level3,
-           c3.parent_id parent_id3,
-           c3.category_icon category_icon3,
-           c3.category_slogan category_slogan3,
-           c3.category_pic category_pic3,
-           c3.category_bg_color category_bg_color3
+           c3.parent_id parent_id3
 
     from category c1
              left JOIN category c2 on c1.category_id = c2.parent_id
