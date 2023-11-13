@@ -27,11 +27,10 @@ public class ProductController {
         return productService.selectPage(pageNum,pageSize);
 
     }
-//    @GetMapping("/introduce")
-//    public ResultData introduce(){
-//        return productService.introduce();
-//
-//    }
+    @GetMapping("/introduce")
+    public ResultData introduce(@RequestParam(defaultValue = "10") Integer num){
+        return productService.introduce(num);
+    }
 
 }
 
