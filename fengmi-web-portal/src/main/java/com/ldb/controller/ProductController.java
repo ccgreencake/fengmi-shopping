@@ -4,10 +4,7 @@ package com.ldb.controller;
 import com.ldb.pojo.ResultData;
 import com.ldb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -30,6 +27,10 @@ public class ProductController {
     @GetMapping("/introduce")
     public ResultData introduce(@RequestParam(defaultValue = "10") Integer num){
         return productService.introduce(num);
+    }
+    @GetMapping("/category/{categoryId}/{pageNum}/{pageSize}")
+    public ResultData getByCategoryId(@PathVariable("categoryId") Integer categoryId,@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize){
+        return productService.getByCategoryId(categoryId,pageNum,pageSize);
     }
 
 }

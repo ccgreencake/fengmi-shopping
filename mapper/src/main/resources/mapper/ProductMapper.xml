@@ -12,7 +12,7 @@
             <result property="isMain" column="is_main"></result>
         </collection>
     </resultMap>
-<select id="selectIntroduct" resultMap="ProductMap">
+    <select id="selectIntroduct" resultMap="ProductMap">
     select product_id,
            product_name,
            sold_num,
@@ -27,4 +27,19 @@
     ORDER BY sold_num DESC
         LIMIT #{num}
 </select>
+    <select id="selectByCategoryId" resultMap="ProductMap">
+        select product_id,
+               product_name,
+               sold_num,
+               url,
+               id,
+               is_main,
+               update_time
+        from product
+                    LEFT JOIN product_img
+                            on product.product_id = product_img.item_id
+        where category_id = #{categoryId} and is_main = 1
+        ORDER BY sold_num DESC
+        Limit #{pageNum}, #{pageSize}
+    </select>
 </mapper>

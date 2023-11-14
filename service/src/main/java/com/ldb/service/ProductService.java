@@ -16,4 +16,6 @@ public interface ProductService extends IService<Product> {
     ResultData selectPage(Integer pageNum, Integer pageSize);
 
     ResultData introduce(Integer num);
+
+    ResultData getByCategoryId(Integer categoryId, Integer pageNum, Integer pageSize);
 }

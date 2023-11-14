@@ -1,5 +1,6 @@
 package com.ldb.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldb.pojo.Product;
 import com.ldb.mapper.ProductMapper;
@@ -45,6 +46,22 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             return new ResultData(500, "没有数据");
         } else {
             return new ResultData(200, "查询成功", products);
+        }
+    }
+
+    @Override
+    public ResultData getByCategoryId(Integer categoryId, Integer pageNum, Integer pageSize) {
+        List<Product> products = productMapper.selectByCategoryId(categoryId, (pageNum-1)*pageSize, pageSize);
+        Page page = new Page(pageNum, pageSize);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("category_id", categoryId);
+        queryWrapper.orderByDesc("sold_num");
+        productMapper.selectPage(page,queryWrapper);
+        page.setRecords(products);
+        if (products.size() == 0) {
+            return new ResultData(500, "没有数据");
+        } else {
+            return new ResultData(200, "查询成功",page);
         }
     }
 }
