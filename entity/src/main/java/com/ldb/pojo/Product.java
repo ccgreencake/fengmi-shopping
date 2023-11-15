@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonKey;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,6 +35,7 @@ public class Product implements Serializable {
     /**
      * 商品主键id
      */
+    @TableId
     private String productId;
 
     /**
