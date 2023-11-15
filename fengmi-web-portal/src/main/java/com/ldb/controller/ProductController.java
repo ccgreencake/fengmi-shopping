@@ -32,6 +32,10 @@ public class ProductController {
     public ResultData getByCategoryId(@PathVariable("categoryId") Integer categoryId,@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize){
         return productService.getByCategoryId(categoryId,pageNum,pageSize);
     }
+    @GetMapping("/detail/{product_id}")
+    public ResultData detail(@PathVariable("product_id") Integer product_id){
+        return productService.getDetail(product_id);
+    }
 
 }
 

@@ -65,7 +65,7 @@ public class CodeGenerator {
 //设置乐观锁注解(数据库中需要有version字段)
 //        strategy.setVersionFieldName("version");
 //设置生成的表名
-        strategy.setInclude("product_img");
+        strategy.setInclude("product_img","product_comments","product_params","product_sku");
         mpg.setStrategy(strategy);
         mpg.execute();
     }

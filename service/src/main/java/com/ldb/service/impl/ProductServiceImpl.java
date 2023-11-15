@@ -2,9 +2,8 @@ package com.ldb.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ldb.pojo.Product;
-import com.ldb.mapper.ProductMapper;
-import com.ldb.pojo.ResultData;
+import com.ldb.mapper.*;
+import com.ldb.pojo.*;
 import com.ldb.service.ProductService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,20 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private ProductImgMapper productImgMapper;
+
+    @Autowired
+    private ProductParamsMapper productParamsMapper;
+
+    @Autowired
+    private ProductCommentsMapper productCommentsMapper;
+
+    @Autowired
+    private ProductSkuMapper productSkuMapper;
+
+
     @Override
     public ResultData selectPage(Integer pageNum, Integer pageSize) {
         Page page = new Page(pageNum, pageSize);
@@ -63,5 +76,20 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         } else {
             return new ResultData(200, "查询成功",page);
         }
+    }
+
+    @Override
+    public ResultData getDetail(Integer productId) {
+        Product product = productMapper.selectById(productId);
+        QueryWrapper QWProductId = new QueryWrapper();
+        QueryWrapper QWItemId = new QueryWrapper();
+        QWProductId.eq("product_id", productId);
+        QWItemId.eq("item_id", productId);
+        List<ProductImg> productImgs = productImgMapper.selectList(QWItemId);
+        List<ProductParams> productParams = productParamsMapper.selectList(QWProductId);
+        List<ProductComments> productComments = productCommentsMapper.selectList(QWProductId);
+        List<ProductSku> productSkus = productSkuMapper.selectList(QWProductId);
+        ProductDetail productDetail = new ProductDetail(product,productImgs,productParams,productComments,productSkus);
+        return new ResultData<>(200,"查询成功",productDetail);
     }
 }
