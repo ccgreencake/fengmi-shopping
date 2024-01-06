@@ -77,9 +77,7 @@ public class RsaUtils {
      * @param privateKeyFilename 私钥文件路径
      * @param secret             生成密钥的密文
      */
-    public static void generateKey(String publicKeyFilename, String
-            privateKeyFilename, String
-                                           secret, int keySize) throws Exception {
+    public static void generateKey(String publicKeyFilename, String privateKeyFilename, String secret, int keySize) throws Exception {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(secret.getBytes());
         keyPairGenerator.initialize(Math.max(keySize, DEFAULT_KEY_SIZE),

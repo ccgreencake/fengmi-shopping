@@ -3,10 +3,13 @@ import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.ldb.utils.JsonUtils;
 import com.ldb.utils.JwtUtils;
 import com.ldb.utils.RsaUtils;
 import org.junit.Test;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.ResourceUtils;
+import springfox.documentation.spring.web.json.Json;
 
 import java.io.FileNotFoundException;
 import java.security.PrivateKey;
@@ -68,7 +71,7 @@ public class UtilsTest {
     public void testValidatePublicKeyAndPrivateKey() throws Exception {
         //私钥加密，公钥解密
         //获取私钥文件路径
-        String privateFile = ResourceUtils.getFile("classpath:rsa.pri").getPath();
+        String privateFile = ResourceUtils.getFile("classpath:key/rsa.pri").getPath();
         //获取私钥对象
         PrivateKey privateKey = RsaUtils.getPrivateKey(privateFile);
         //生成Token
@@ -77,12 +80,17 @@ public class UtilsTest {
         map.put("role","ROLE_admin,ROLE_user");
         String token = JwtUtils.generateTokenExpireInSeconds(map, privateKey, 10);
         //获取公钥文件路径
-        String publicFile = ResourceUtils.getFile("classpath:rsa.pub").getPath();
+        String publicFile = ResourceUtils.getFile("classpath:key/rsa.pub").getPath();
         //获取公钥对象
         PublicKey publicKey = RsaUtils.getPublicKey(publicFile);
         Map infoFromToken = (Map) JwtUtils.getInfoFromToken(token, publicKey,
                 Map.class);
         System.out.println(infoFromToken.get("username"));
         System.out.println(infoFromToken.get("role"));
+    }
+    @Test
+    public void testMd5(){
+        String s = DigestUtils.md5DigestAsHex("123123".getBytes());
+        System.out.println(s);
     }
 }

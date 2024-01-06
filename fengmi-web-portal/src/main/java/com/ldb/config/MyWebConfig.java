@@ -1,7 +1,10 @@
 package com.ldb.config;
 
+import com.ldb.interceptor.LoginInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -13,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @Configuration
 public class MyWebConfig implements WebMvcConfigurer {
+    @Autowired
+    private LoginInterceptor loginInterceptor;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**")
@@ -26,5 +31,13 @@ public class MyWebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowedOrigins("*")
                 ;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns(
+                        "/ShoppingCarts/**"
+                );
     }
 }

@@ -1,11 +1,11 @@
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ldb.FengmiWebPortalApplication;
-import com.ldb.mapper.CategoryMapper;
-import com.ldb.mapper.ProductMapper;
+import com.ldb.mapper.*;
 import com.ldb.pojo.Category;
 import com.ldb.pojo.MyPage;
 import com.ldb.pojo.Product;
+import com.ldb.pojo.ShoppingCart;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +24,12 @@ public class MapperTest {
     private CategoryMapper categoryMapper;
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private UsersMapper usersMapper;
+    @Autowired
+    private ShoppingCartMapper shoppingCartMapper;
+    @Autowired
+    private UserAddrMapper userAddrMapper;
     @Test
     public void categoryTest() {
         List<Category> categories = categoryMapper.selectAllCategory();
@@ -58,5 +64,33 @@ public class MapperTest {
         List<Product> products = productMapper.selectByCategoryId(46, 0, 5);
         System.out.println(products);
         productMapper.selectCount(null);
+    }
+    @Test
+    public void usersTest1(){
+        System.out.println(usersMapper.selectById(2));
+    }
+    @Test
+    public void shoppingCartTest(){
+        List<ShoppingCart> shoppingCarts = shoppingCartMapper.selectShoppingCartByUserId(2);
+        for (ShoppingCart shoppingCart : shoppingCarts) {
+            System.out.println(shoppingCart);
+
+        }
+    }
+    @Test
+    public void userAddrTest(){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id",2);
+        queryWrapper.eq("common_addr",1);
+        List list = userAddrMapper.selectList(queryWrapper);
+        System.out.println(list);
+    }
+    @Test
+    public void userAddrTest2(){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id",2);
+        queryWrapper.eq("common_addr",0);
+        List list = userAddrMapper.selectList(queryWrapper);
+        System.out.println(list);
     }
 }
